@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Authorization Complete</title>
+<style>
+  :root { --bg: #fafafa; --fg: #222; --sub: #666; --box: #fff; --line: #ddd; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #181818; --fg: #eee; --sub: #aaa; --box: #222; --line: #444; } }
+  body { margin: 0; padding: 32px 16px; background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; }
+  p { color: var(--sub); }
+  textarea { width: 100%; box-sizing: border-box; padding: 12px; font: 13px monospace; background: var(--box); color: var(--fg); border: 1px solid var(--line); border-radius: 6px; }
+  button { margin-top: 8px; padding: 8px 16px; font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Authorization complete</h1>
+  <p>Copy the URL below and paste it into the in-house tool. This page sends nothing anywhere.</p>
+  <textarea id="u" rows="4" readonly></textarea>
+  <button id="c" type="button">Copy</button>
+</main>
+<script>
+  var u = document.getElementById("u");
+  u.value = location.href;
+  document.getElementById("c").onclick = function () {
+    u.select();
+    try { navigator.clipboard.writeText(u.value); } catch (e) { document.execCommand("copy"); }
+    this.textContent = "Copied";
+  };
+</script>
+</body>
+</html>
